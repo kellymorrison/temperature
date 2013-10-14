@@ -46,33 +46,40 @@ public class TemperatureTest {
 		assertEquals("Units should be Kelvin", Temperature.Units.KELVIN, kelvin.getUnits()); 
 	}
 	
+	//tested 6 conversion cases for changeUnits method: K->C, K->F, C->K, C->F, F->K, F->C
 	@Test
 	public void testChangeUnits() {
+		//boundary test case 
 		Temperature kelvinToCelsius = new Temperature(0.0, Temperature.Units.KELVIN);
 		kelvinToCelsius.changeUnits(Temperature.Units.CELSIUS);
 		assertEquals("Temperature should be -273.15", -273.15, kelvinToCelsius.getValue(), PRECISION);
 		assertEquals("Temperature should be in Celsius", Temperature.Units.CELSIUS, kelvinToCelsius.getUnits()); 
 
+		//precision test case
 		Temperature kelvinToFahrenheit = new Temperature(10.1234567, Temperature.Units.KELVIN);
 		kelvinToFahrenheit.changeUnits(Temperature.Units.FAHRENHEIT);
 		assertEquals("Temperature should be -441.447777",-441.447777, kelvinToFahrenheit.getValue(), PRECISION);
 		assertEquals("Temperature should be in Fahrenheit", Temperature.Units.FAHRENHEIT, kelvinToFahrenheit.getUnits());
 		
+		//negative input test case
 		Temperature celsiusToKelvin = new Temperature(-25, Temperature.Units.CELSIUS);
 		celsiusToKelvin.changeUnits(Temperature.Units.KELVIN);
 		assertEquals("Temperature should be 248.15", 248.15, celsiusToKelvin.getValue(), PRECISION);
 		assertEquals("Temperature should be in Kelvin", Temperature.Units.KELVIN, celsiusToKelvin.getUnits());
 
+		//to verify that C->F and F->C are consistent 
 		Temperature celsiusToFahrenheit = new Temperature(40.5, Temperature.Units.CELSIUS);
 		celsiusToFahrenheit.changeUnits(Temperature.Units.FAHRENHEIT);
 		assertEquals("Temperature should be 104.899999", 104.899999, celsiusToFahrenheit.getValue(), PRECISION);
 		assertEquals("Temperature should be in Fahrenheit", Temperature.Units.FAHRENHEIT, celsiusToFahrenheit.getUnits());
 		
+		//zero test case
 		Temperature fahrenheitToKelvin = new Temperature(0.0, Temperature.Units.FAHRENHEIT);
 		fahrenheitToKelvin.changeUnits(Temperature.Units.KELVIN);
 		assertEquals("Temperature should be 255.372222", 255.372222, fahrenheitToKelvin.getValue(), PRECISION);
 		assertEquals("Temperature should be in Kelvin", Temperature.Units.KELVIN, fahrenheitToKelvin.getUnits());
 		
+		//precision test case
 		Temperature fahrenheitToCelsius = new Temperature(104.899999, Temperature.Units.FAHRENHEIT);
 		fahrenheitToCelsius.changeUnits(Temperature.Units.CELSIUS);
 		assertEquals("Temperature should be 40.5", 40.5, fahrenheitToCelsius.getValue(), PRECISION);
