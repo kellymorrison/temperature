@@ -14,15 +14,19 @@ public class TemperatureTest {
 	
 	@Test
 	public void testGetValue() {
+		//boundary test: 0.0 Kelvin, since negative Kelvin should throw an Exeception
 		Temperature boundaryTest = new Temperature(0.0,Temperature.Units.KELVIN);
 		assertEquals("Temperature should equals 0.0 Kelvin", 0.0, boundaryTest.getValue(), PRECISION);
 		
+		//negative input test: -45.0 Celsius, negative Celsius numbers allowed so should work
 		Temperature negativeTest = new Temperature(-45.0, Temperature.Units.CELSIUS);
 		assertEquals("Temperature should equal -45.0 Celsius", -45.0, negativeTest.getValue(), PRECISION);
 		
+		//int as an input test: 30 Fahrenheit, tests to ensure int casting works since constructor expects a double
 		Temperature intTest = new Temperature(30, Temperature.Units.FAHRENHEIT);
 		assertEquals("Temperature should equal 30.0 Celcius", 30.0, intTest.getValue(), PRECISION);
 		
+		//input with >6 decimal places:  60.1234567 Celsius, to ensure that the output precision is only 6 decimal places
 		Temperature precisionTest = new Temperature(60.1234567, Temperature.Units.CELSIUS);
 		assertEquals("Temperature should equal 60.123456", 60.123456, precisionTest.getValue(), PRECISION);
 	}
