@@ -79,10 +79,10 @@ public class TemperatureTest {
 		assertEquals("Temperature should be 255.372222", 255.372222, fahrenheitToKelvin.getValue(), PRECISION);
 		assertEquals("Temperature should be in Kelvin", Temperature.Units.KELVIN, fahrenheitToKelvin.getUnits());
 		
-		//precision test case
+		//negative precision test case
 		Temperature fahrenheitToCelsius = new Temperature(104.899999, Temperature.Units.FAHRENHEIT);
 		fahrenheitToCelsius.changeUnits(Temperature.Units.CELSIUS);
-		assertEquals("Temperature should be 40.5", 40.5, fahrenheitToCelsius.getValue(), PRECISION);
+		assertEquals("Temperature should be -76.055555", -76.055555, fahrenheitToCelsius.getValue(), PRECISION);
 		assertEquals("Temperature should be in Celsius", Temperature.Units.CELSIUS, fahrenheitToCelsius.getUnits());
 		
 	}
