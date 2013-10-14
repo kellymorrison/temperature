@@ -38,6 +38,10 @@ public class Temperature {
   public Temperature (double value, Temperature.Units units) {
       this.units    = units;
       valueInKelvin = convertToKelvin(value);
+      
+      if (valueInKelvin < 0) {
+    	  throw new IllegalArgumentException("Cannot have temperature below absolute zero"); 
+      }
   }
 
   /**
