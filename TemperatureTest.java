@@ -33,12 +33,15 @@ public class TemperatureTest {
 	
 	@Test
 	public void testGetUnits() {
+		//testing Celsius input unit
 		Temperature celsius = new Temperature(-10, Temperature.Units.CELSIUS);
 		assertEquals("Units should be Celsius", Temperature.Units.CELSIUS, celsius.getUnits()); 
 		
+		//testing Fahrenheit input unit
 		Temperature fahrenheit = new Temperature(0, Temperature.Units.FAHRENHEIT); 
 		assertEquals("Units should be Fahrenheit", Temperature.Units.FAHRENHEIT, fahrenheit.getUnits()); 
 		
+		//testing Kelvin input unit
 		Temperature kelvin = new Temperature(10, Temperature.Units.KELVIN);
 		assertEquals("Units should be Kelvin", Temperature.Units.KELVIN, kelvin.getUnits()); 
 	}
