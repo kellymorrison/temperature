@@ -135,8 +135,19 @@ public class Temperature {
    * in a consistent manner.
    * @param units the new {@code Units} 
    */
-  public void changeUnits(Units units) {
+  public double changeUnits(Units units, double value) {
+      if ((this.units == Temperature.Units.CELSIUS) && (units == Temperature.Units.FAHRENHEIT)) {
+    	  value = (9.0/5.0)*value + 32.0;
+      }
+      else if ((this.units == Temperature.Units.FAHRENHEIT) && (units == Temperature.Units.CELSIUS)) {
+    	  value = (value - 32.0) * (5.0/9.0);
+      }
+      else {
+    	  this.units = units; 
+    	  value = convertFromKelvin(valueInKelvin); 
+      }
       this.units = units;
+      return value; 
   }
 
   /** 
