@@ -5,6 +5,7 @@
  */
 
 import org.junit.* ;
+
 import static org.junit.Assert.* ;
 
 public class TemperatureTest {
@@ -24,6 +25,18 @@ public class TemperatureTest {
 		
 		Temperature precisionTest = new Temperature(60.1234567, Temperature.Units.CELSIUS);
 		assertEquals("Temperature should equal 60.123456", 60.123456, precisionTest.getValue(), PRECISION);
+	}
+	
+	@Test
+	public void testGetUnits() {
+		Temperature celsius = new Temperature(-10, Temperature.Units.CELSIUS);
+		assertEquals("Units should be Celsius", Temperature.Units.CELSIUS, celsius.getUnits()); 
+		
+		Temperature fahrenheit = new Temperature(0, Temperature.Units.FAHRENHEIT); 
+		assertEquals("Units should be Fahrenheit", Temperature.Units.FAHRENHEIT, fahrenheit.getUnits()); 
+		
+		Temperature kelvin = new Temperature(10, Temperature.Units.KELVIN);
+		assertEquals("Units should be Kelvin", Temperature.Units.KELVIN, kelvin.getUnits()); 
 	}
 	
 	@Test
